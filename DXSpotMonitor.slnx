@@ -1,4 +1,9 @@
 <Solution>
+  <Project Path="CCSpotViewer/CCSpotViewer.csproj" />
+  <Project Path="CCUserSpotPoller/CCUserSpotPoller.csproj" />
+  <Project Path="Common/Common.csproj" />
+  <Project Path="Data/Data.csproj" />
+  <Project Path="DataAccessLayer/DataAccessLayer.csproj" />
   <Project Path="DXSpotMonitor/DXSpotMonitor.csproj" />
   <Project Path="DXSpotViewer/DXSpotViewer.csproj" />
 </Solution>

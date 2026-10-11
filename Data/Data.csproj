@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <OutputType>Library</OutputType>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <Configurations>Debug;Release 3.5;Release 4.0;Release 4.5;Release 4.6;Release</Configurations>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="ClubLogDataTableExtensions.cs" />
+    <Compile Remove="ClubLogXmlParser.cs" />
+    <Compile Remove="WinKeyerService.cs" />
+    <Compile Remove="zzzzzzzzzzzzzzzWinKeyerService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.79" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.12.3" />         
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.9" />
+    <PackageReference Include="System.Data.OleDb" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="8.*" />
+    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />
+    <ProjectReference Include="..\GPS\GPS.csproj" />
+    <ProjectReference Include="..\NAudioLib\NAudioLib.csproj" />
+    <ProjectReference Include="..\Web\Web.csproj" />
+    <ProjectReference Include="..\WinControlLibrary\WinControlLibrary.csproj" />
+  </ItemGroup>  
+</Project>
