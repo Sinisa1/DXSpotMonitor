@@ -1,0 +1,113 @@
+﻿
+
+
+Steps to Deploy DXSpotViewer to Android Phone
+1. Set DXSpotViewer as Startup Project
+•	In Solution Explorer, right-click DXSpotViewer → Set as Startup Project
+2. Select Android Target
+•	In the toolbar, change the dropdown from Windows Machine to:
+•	Android Emulator (if you have one configured), or
+•	Android Local Device (your physical phone via USB)
+3. Enable Developer Options on Your Phone
+1.	Go to Settings → About phone => Software Information
+2.	Tap Build number 7 times
+
+Navigate back to the main Settings menu; Developer options will now appear at the very bottom beneath About phone
+
+
+Open Developer options.
+
+Tap the magnifying glass (Search) icon in the top-right corner.
+
+Type USB debugging.
+
+
+To change the USB mode to File Transfer on a Samsung Galaxy S26:
+
+Via Notification Shade (When Connected to PC)
+
+Connect your phone to your computer using a USB cable.
+
+Unlock your phone and swipe down from the top of the screen to view notifications.
+
+Tap the Android System notification (typically labeled Charging this device via USB or Tap for other USB options).
+
+Select Transferring files / Android Auto.
+
+Set as Default via Developer Options
+
+Open Settings and tap Developer options.
+
+Scroll down to the Networking section.
+
+Tap Default USB configuration.
+
+Select Transferring files.
+
+
+
+
+Tap the result to jump straight to the toggle.
+3.	Enable USB Debugging in Developer Options
+4.	Connect phone via USB
+4. Verify Device is Detected
+•	Open Command Prompt and run:
+
+
+
+change the target to local phone. 
+
+# Build, install, and run in one command
+dotnet build -f net9.0-android -t:Run -c Debug
+
+
+
+
+
+ dotnet clean -f net9.0-android
+ dotnet build -f net9.0-android -t:Run
+ dotnet build -f net9.0-android
+
+ # Full clean
+Remove-Item -Recurse -Force bin, obj -ErrorAction SilentlyContinue
+dotnet restore
+dotnet build -f net9.0-android -c Debug
+dotnet build -f net9.0-android -t:Run
+
+========== installation.
+cd C:\_REPOSITORIES\VA3TNM_LOG\DXSpotViewer      !!!!!!!!!!!!!!!!!!!!!!!! make sure you are in the proper directory !!!!!!!!!!!!!!!!!!!!!
+
+dotnet publish -c Release -f net9.0-android
+
+
+
+=====================================
+apk produced:
+DXSpotViewer\bin\Release\net9.0-android\publish\com.va3tnm.dxspotviewer-Signed.apk
+2. Copy the APK to your phone via USB File Transfer
+1.	Connect the S26 via USB.
+2.	Set USB mode to File Transfer (MTP) (pull down notification shade → tap USB notification → select File Transfer).
+3.	Open Windows File Explorer → your phone appears as a device in the sidebar → open it → Internal storage > Download.
+4.	Drag/copy the .apk file from the publish folder into that Download folder.
+3. Install directly on the phone
+1.	On the S26, open My Files (or Files) app.
+2.	Navigate to Download.
+3.	Tap the .apk file.
+4.	If Android blocks it: it will prompt "For your security..." with a button to open settings. Tap it, then enable Allow from this source for the Files app (this is under Settings > Apps > Special access > Install unknown apps).
+5.	Go back and tap the APK again → Install.
+4. If it says "App not installed" again
+Manually uninstall the existing app first, via the phone itself (no ADB needed):
+1.	On the S26: Settings > Apps > DX Spot Viewer (or long-press the app icon on the home screen/app drawer) → Uninstall.
+2.	Then repeat step 3 above to install the fresh APK.
+This is the complete no-ADB path: build → copy via USB File Transfer → install via Files app → uninstall via Settings/app icon if needed.
+
+
+
+Step 1: Configure Samsung One UI Battery SettingsSamsung aggressively puts background apps into "Deep Sleep" unless explicit exemptions are granted. 
+Set App Battery Usage to Unrestricted  Open Settings > Apps > DX Spot Viewer.
+Tap Battery and select Unrestricted.Add App to "Never Sleeping Apps"  Go to Settings > Battery > Background usage limits.  
+Tap Never sleeping apps > tap + > select DX Spot Viewer > tap Add.  
+Disable Battery OptimizationGo to Settings > Apps > 3 dots (top right) > Special access > Optimize battery usage.
+Change filter to All apps, find DX Spot Viewer, and toggle it Off.Lock App in RecentsOpen the app switcher (Recents view), 
+tap the App Icon above the preview card, and select Keep open.
+

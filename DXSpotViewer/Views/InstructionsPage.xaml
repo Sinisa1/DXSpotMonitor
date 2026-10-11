@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DXSpotViewer.Views.InstructionsPage"
+             Title="InstructionsPage">
+    <Grid RowDefinitions="Auto,*">
+        <Label 
+            Grid.Row="0"
+            Text="Instructions"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" 
+            Margin="10" />
+
+        <WebView Grid.Row="1">
+            <WebView.Source>
+                <HtmlWebViewSource>
+                    <HtmlWebViewSource.Html>
+                        <![CDATA[
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 12px;
+            margin: 0;
+            line-height: 1.5;
+        }
+        h2 {
+            color: #4CAD50;
+            margin-top: 0;
+            font-size: 1.2rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 6px;
+        }
+        .step-card {
+            background-color: #154050;
+            border-left: 4px solid #007ACC;
+            border-radius: 4px;
+            padding: 10px 12px;
+            margin-bottom: 10px;
+        }
+        h3 {
+            color: #64B536;
+            font-size: 1.1rem;
+            margin: 0 0 6px 0;
+        }
+        ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+        li {
+            margin-bottom: 4px;
+            font-size: 0.85rem;
+        }
+        b {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <h2>Disable Sleep Restrictions for DX Spot Viewer</h2>
+    
+    <div class="step-card">
+        <h3>1. Set Battery to Unrestricted</h3>
+        <ul>
+            <li>Open <b>Settings &gt; Apps &gt; DX Spot Viewer</b></li>
+            <li>Tap <b>Battery</b></li>
+            <li>Select <b>Unrestricted</b></li>
+        </ul>
+    </div>
+
+    <div class="step-card">
+        <h3>2. Add to Never Sleeping Apps</h3>
+        <ul>
+            <li>Open <b>Settings &gt; Battery &gt; Background usage limits</b></li>
+            <li>Tap <b>Never sleeping apps</b></li>
+            <li>Tap <b>+</b>, select <b>DX Spot Viewer</b>, and tap <b>Add</b></li>
+        </ul>
+    </div>
+
+    <div class="step-card">
+        <h3>3. Lock App in Recents View</h3>
+        <ul>
+            <li>Open the <b>Recents / Task Switcher</b> view</li>
+            <li>Tap the <b>DX Spot Viewer Icon</b> above the preview window</li>
+            <li>Select <b>Keep open</b></li>
+        </ul>
+    </div>
+
+    <div class="step-card">
+        <h3>4. Turn Off Unused App Hibernation</h3>
+        <ul>
+            <li>Open <b>Settings &gt; Apps &gt; DX Spot Viewer</b></li>
+            <li>Toggle off <b>Pause app activity if unused</b></li>
+        </ul>
+    </div>
+
+    <div class="step-card">
+        <h3>5. Allow Unrestricted Background Data</h3>
+        <ul>
+            <li>Open <b>Settings &gt; Apps &gt; DX Spot Viewer &gt; Mobile data</b></li>
+            <li>Turn ON <b>Allow background data usage</b></li>
+            <li>Turn ON <b>Allow data usage while Data saver is on</b></li>
+        </ul>
+    </div>
+
+    <div class="step-card">
+        <h3>6. Disable Auto Optimization Restarts</h3>
+        <ul>
+            <li>Open <b>Settings &gt; Device care &gt; Auto optimization</b></li>
+            <li>Turn OFF <b>Restart when needed</b></li>
+        </ul>
+    </div>
+</body>
+</html>
+]]>
+                    </HtmlWebViewSource.Html>
+                </HtmlWebViewSource>
+            </WebView.Source>
+        </WebView>
+    </Grid>
+</ContentPage>

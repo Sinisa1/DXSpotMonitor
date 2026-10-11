@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="DXSpotMonitor/DXSpotMonitor.csproj" />
+  <Project Path="DXSpotViewer/DXSpotViewer.csproj" />
+</Solution>

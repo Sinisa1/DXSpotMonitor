@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:DXSpotViewer.ViewModels"
+             xmlns:models="clr-namespace:DXSpotViewer.Models"
+             xmlns:local="clr-namespace:DXSpotViewer"
+             x:Class="DXSpotViewer.MainPage"
+             x:DataType="vm:MainViewModel"
+             Title="DX Spot Viewer v 2026-08-09 16:28">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="8">
+
+        <!-- Header - Compact -->
+        <Border Grid.Row="0" 
+            BackgroundColor="{StaticResource HeaderDark}"
+            Stroke="{StaticResource BorderColor}"
+            StrokeThickness="1"
+            Padding="10"
+            Margin="0,0,0,8">
+            <VerticalStackLayout Spacing="4">
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="15">
+                    <Label FontSize="13" TextColor="{StaticResource TextSecondary}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="👤 "/>
+                                <Span Text="{Binding UserCall}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Label FontSize="13" TextColor="{StaticResource TextSecondary}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="📊 "/>
+                                <Span Text="{Binding SpotsReceivedCount}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Label Text="{Binding MqttStatus}" 
+                           FontSize="13" 
+                           TextColor="{StaticResource TextSecondary}"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Spot List -->
+        <CollectionView Grid.Row="1" 
+                    ItemsSource="{Binding Spots}"
+                    SelectionMode="None"
+                    VerticalOptions="FillAndExpand">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:DxSpotMessage">
+                    <Border BackgroundColor="{StaticResource CardBackground}"
+                        Stroke="{StaticResource BorderColor}"
+                        StrokeThickness="1"
+                        Padding="8"
+                        Margin="0,0,0,4">
+                        <VerticalStackLayout Spacing="2">
+
+                            <!-- LINE 1: Frequency, Band, Mode, Time -->
+                            <HorizontalStackLayout Spacing="8">
+                                <Label Text="{Binding FrequencyDisplay}"
+                                   FontSize="30"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource AccentColor}"
+                                   VerticalOptions="Center"/>
+
+                                <Label Text="{Binding Band}"
+                                   FontSize="16"
+                                   TextColor="{StaticResource TextSecondary}"
+                                   VerticalOptions="Center"
+                                   Padding="4,2"
+                                   BackgroundColor="{StaticResource HeaderDark}"/>
+
+                                <Label Text="{Binding Mode}"
+                                   FontSize="16"
+                                   TextColor="{StaticResource TextSecondary}"
+                                   VerticalOptions="Center"
+                                   Padding="4,2"
+                                   BackgroundColor="{StaticResource HeaderDark}"/>
+
+                                <Label FontSize="14" 
+                                   TextColor="{StaticResource TextSecondary}"
+                                   VerticalOptions="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding LocalTimeStr}" FontSize="30" TextColor="{StaticResource TextPrimary}"  FontAttributes="Bold"/>
+                                            <Span Text=" U:"/>
+                                            <Span Text="{Binding UTCTimeStr}" FontSize="18"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </HorizontalStackLayout>
+
+                            <!-- LINE 2: Call, DXCC, CQZ, RptByType, Spotter -->
+                            <HorizontalStackLayout Spacing="6">
+                                <Label Text="{Binding Call}"
+                                   FontSize="30"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource TextPrimary}"
+                                   VerticalOptions="Center"/>
+
+                                <Label Text="{Binding DXCC}"
+                                   FontSize="15"
+                                   TextColor="{StaticResource TextSecondary}"
+                                   VerticalOptions="Center"/>
+
+                                <Label FontSize="14" 
+                                   TextColor="{StaticResource TextSecondary}"
+                                   VerticalOptions="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Z:"/>
+                                            <Span Text="{Binding CQZone}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <Label Text="{Binding RptByType}"
+                                   FontSize="14"
+                                   FontAttributes="Italic"
+                                   TextColor="{StaticResource AccentColor}"
+                                   VerticalOptions="Center"
+                                   IsVisible="{Binding RptByType, Converter={StaticResource StringNotEmptyConverter}}"/>
+
+                                <Label Text="{Binding Spotter}"
+                                   FontSize="14"
+                                   TextColor="{StaticResource TextSecondary}"
+                                   VerticalOptions="Center"
+                                   IsVisible="{Binding Spotter, Converter={StaticResource StringNotEmptyConverter}}"/>
+                            </HorizontalStackLayout>
+
+                            <!-- ✅ LINE 3: Comment (WAS MISSING!) -->
+                            <Label Text="{Binding Comment}"
+                               FontSize="18"
+                               TextColor="{StaticResource TextSecondary}"
+                               LineBreakMode="TailTruncation"
+                               MaxLines="1"
+                               IsVisible="{Binding Comment, Converter={StaticResource StringNotEmptyConverter}}"/>
+
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <!-- ✅ FIX: Add x:DataType to EmptyView to fix XC0022 warning -->
+            <CollectionView.EmptyView>
+                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                    <Label Text="📭"
+                       FontSize="48"
+                       HorizontalOptions="Center"/>
+                    <Label Text="No spots received yet"
+                       FontSize="18"
+                       TextColor="{StaticResource TextSecondary}"
+                       HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+        </CollectionView>
+
+        <!-- Footer Buttons -->
+        <HorizontalStackLayout Grid.Row="2" 
+                           HorizontalOptions="Center" 
+                           Spacing="5"
+                           Margin="0,4,0,0">
+            <Button Text="⚙️ Settings"
+                Command="{Binding NavigateToSettingsCommand}"
+                BackgroundColor="{StaticResource ButtonBackground}"
+                TextColor="{StaticResource TextPrimary}"
+                FontSize="16"
+                HeightRequest="50"
+                WidthRequest="140"/>
+
+            <Button Text="🗑️ Clear"
+                Command="{Binding ClearSpotsCommand}"
+                BackgroundColor="{StaticResource ButtonBackground}"
+                TextColor="{StaticResource TextPrimary}"
+                FontSize="16"
+                HeightRequest="50"
+                WidthRequest="140"/>
+        </HorizontalStackLayout>
+    </Grid>
+
+</ContentPage>

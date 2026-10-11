@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="DXSpotViewer.Views.LoginPage"
+             Title="Login"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="*,Auto,Auto,Auto,Auto,Auto,*" 
+          Padding="30"
+          BackgroundColor="White">
+
+        <!-- Logo/Title -->
+        <VerticalStackLayout Grid.Row="1" 
+                             Spacing="10"
+                             Margin="0,0,0,40">
+            <Label Text="📡" 
+                   FontSize="60"
+                   HorizontalOptions="Center"/>
+            <Label Text="DX Spot Viewer" 
+                   FontSize="28" 
+                   FontAttributes="Bold"
+                   TextColor="#2c3e50"
+                   HorizontalOptions="Center"/>
+            <Label Text="Login to start monitoring" 
+                   FontSize="14" 
+                   TextColor="#7f8c8d"
+                   HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+
+        <!-- Callsign Entry -->
+        <Frame Grid.Row="2" 
+               Padding="0" 
+               CornerRadius="10"
+               BorderColor="#bdc3c7"
+               Margin="0,0,0,15"
+               HasShadow="False">
+            <Entry x:Name="UserCallEntry"
+                   Placeholder="Your Callsign (e.g., VE3ZR)"
+                   PlaceholderColor="#95a5a6"
+                   TextColor="#2c3e50"
+                   BackgroundColor="White"
+                   FontSize="16"
+                   Keyboard="Plain"
+                   MaxLength="10"
+                   Margin="15,10"/>
+        </Frame>
+
+        <!-- PIN Entry -->
+        <Frame Grid.Row="3" 
+               Padding="0" 
+               CornerRadius="10"
+               BorderColor="#bdc3c7"
+               Margin="0,0,0,20"
+               HasShadow="False">
+            <Entry x:Name="PinEntry"
+                   Placeholder="PIN (4 digits)"
+                   PlaceholderColor="#95a5a6"
+                   TextColor="#2c3e50"
+                   BackgroundColor="White"
+                   FontSize="16"
+                   IsPassword="True"
+                   Keyboard="Numeric"
+                   MaxLength="4"
+                   Margin="15,10"/>
+        </Frame>
+
+        <!-- Login Button -->
+        <Button Grid.Row="4"
+                Text="Login"
+                FontSize="18"
+                FontAttributes="Bold"
+                TextColor="White"
+                BackgroundColor="#3498db"
+                HeightRequest="50"
+                CornerRadius="10"
+                Clicked="OnLoginButtonClicked"/>
+
+        <!-- Error Message -->
+        <Label Grid.Row="5"
+               x:Name="ErrorLabel"
+               Text=""
+               TextColor="#e74c3c"
+               FontSize="14"
+               HorizontalOptions="Center"
+               Margin="0,15,0,0"
+               IsVisible="False"/>
+
+    </Grid>
+</ContentPage>
