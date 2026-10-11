@@ -13,7 +13,7 @@
         <!-- Header - Compact -->
         <Border Grid.Row="0" 
             BackgroundColor="{StaticResource HeaderDark}"
-            Stroke="{StaticResource BorderColor}"
+            Stroke="{StaticResource BorderColor}" 
             StrokeThickness="1"
             Padding="10"
             Margin="0,0,0,8">
